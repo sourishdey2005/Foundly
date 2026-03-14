@@ -1,0 +1,12 @@
+{
+  "name": "campus-lost-found-portal",
+  "version": "1.0.0",
+  "description": "Campus Lost & Found Portal with Automated Claim Verification",
+  "main": "index.php",
+  "scripts": {
+    "dev": "convex dev"
+  },
+  "dependencies": {
+    "convex": "^1.32.0"
+  }
+}
