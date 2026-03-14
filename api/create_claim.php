@@ -3,7 +3,7 @@ require_once '../config/convex.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -38,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $convex->createClaim($itemId, $userId, $userName, $phone, $proofText, $proofImage);
 
     if (isset($result['error'])) {
-        header("Location: ../index.php?error=" . urlencode($result['error']));
+        header("Location: index.php?error=" . urlencode($result['error']));
     } else {
-        header("Location: ../index.php?success=Claim submitted successfully. Please wait for admin approval.");
+        header("Location: index.php?success=Claim submitted successfully. Please wait for admin approval.");
     }
     exit();
 }

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config/convex.php';
+require_once '../config/convex.php';
 
 $convex = new ConvexDB();
 
@@ -30,7 +30,7 @@ if (isset($items['error'])) {
     <title>Foundly - Campus Intelligence Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="aurora-container">
@@ -178,7 +178,7 @@ if (isset($items['error'])) {
 
         async function performSearch() {
             const query = searchInput.value;
-            const res = await fetch(`api/search_items.php?status=${currentStatus}&search=${encodeURIComponent(query)}`);
+            const res = await fetch(`item_search_api.php?status=${currentStatus}&search=${encodeURIComponent(query)}`);
             const data = await res.json();
             
             if (data.error) {

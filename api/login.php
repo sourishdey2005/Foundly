@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id'])) {
     <title>Login - Foundly Intel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body class="d-flex align-items-center justify-content-center py-5">
     <div class="aurora-container">
@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     <?php endif; ?>
 
-                    <form action="api/auth.php?action=login" method="POST" class="space-y-6">
+                    <form action="auth_api.php?action=login" method="POST" class="space-y-6">
                         <div>
                             <label class="text-mid small fw-700 text-uppercase ls-wider mb-2 d-block">Institutional ID</label>
                             <div class="position-relative">

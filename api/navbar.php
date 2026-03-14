@@ -22,7 +22,7 @@
                     <div class="fw-700 text-white"><?php echo htmlspecialchars($_SESSION['user_name']); ?></div>
                 </div>
                 <div class="vr bg-white opacity-10 height-100 mx-2"></div>
-                <a href="api/auth.php?action=logout" class="btn-ghost d-flex align-items-center justify-content-center p-2 rounded-circle" style="width: 44px; height: 44px;">
+                <a href="auth_api.php?action=logout" class="btn-ghost d-flex align-items-center justify-content-center p-2 rounded-circle" style="width: 44px; height: 44px;">
                     <i class="bi bi-power fs-5 text-accent-tertiary"></i>
                 </a>
             </div>

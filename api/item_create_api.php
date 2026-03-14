@@ -3,7 +3,7 @@ require_once '../config/convex.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -33,18 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $convex->createItem($userId, $itemName, $description, $location, $dateLost, $category, $fileName);
                 
                 if (isset($result['error'])) {
-                    header("Location: ../report_item.php?error=" . urlencode($result['error']));
+                    header("Location: report_item.php?error=" . urlencode($result['error']));
                 } else {
-                    header("Location: ../index.php?success=Item reported successfully");
+                    header("Location: index.php?success=Item reported successfully");
                 }
             } else {
-                header("Location: ../report_item.php?error=Sorry, there was an error uploading your file.");
+                header("Location: report_item.php?error=Sorry, there was an error uploading your file.");
             }
         } else {
-            header("Location: ../report_item.php?error=Sorry, your file is too large.");
+            header("Location: report_item.php?error=Sorry, your file is too large.");
         }
     } else {
-        header("Location: ../report_item.php?error=Sorry, only JPG, JPEG, & PNG files are allowed.");
+        header("Location: report_item.php?error=Sorry, only JPG, JPEG, & PNG files are allowed.");
     }
     exit();
 }

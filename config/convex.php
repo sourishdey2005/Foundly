@@ -20,12 +20,16 @@ class ConvexDB {
      * @return mixed
      */
     public function call($functionName, $args = []) {
-        $url = "{$this->deploymentUrl}/api/run/{$functionName}";
+        $baseUrl = rtrim($this->deploymentUrl, '/');
+        $url = "{$baseUrl}/api/run/{$functionName}";
         
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['args' => $args]));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+            'args' => $args,
+            'format' => 'json'
+        ]));
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
             // 'Authorization: Bearer ' . $this->apiKey // If auth is needed

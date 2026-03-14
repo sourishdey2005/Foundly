@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $role = $_POST['role'] ?? 'user';
 
         if (empty($name) || empty($email) || empty($password)) {
-            header("Location: ../register.php?error=All fields are required");
+            header("Location: register.php?error=All fields are required");
             exit();
         }
 
         // Domain restriction check
         if (!preg_match('/@kiit\.ac\.in$/i', $email)) {
-            header("Location: ../register.php?error=Only @kiit.ac.in emails are allowed");
+            header("Location: register.php?error=Only @kiit.ac.in emails are allowed");
             exit();
         }
 
@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $convex->createUser($name, $email, $passwordHash, $role);
 
         if (isset($result['error'])) {
-            header("Location: ../register.php?error=" . urlencode($result['error']));
+            header("Location: register.php?error=" . urlencode($result['error']));
         } else {
-            header("Location: ../login.php?success=Account created successfully. Please login.");
+            header("Location: login.php?success=Account created successfully. Please login.");
         }
         exit();
     }
@@ -41,22 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = $_POST['password'];
 
         if (empty($email) || empty($password)) {
-            header("Location: ../login.php?error=Email and password are required");
+            header("Location: login.php?error=Email and password are required");
             exit();
         }
 
         // Domain restriction check
         if (!preg_match('/@kiit\.ac\.in$/i', $email)) {
-            header("Location: ../login.php?error=Only @kiit.ac.in emails are allowed");
+            header("Location: login.php?error=Only @kiit.ac.in emails are allowed");
             exit();
         }
 
         $user = $convex->loginUser($email);
 
         if (isset($user['error'])) {
-            header("Location: ../login.php?error=" . urlencode($user['error']));
+            header("Location: login.php?error=" . urlencode($user['error']));
         } elseif (!$user) {
-            header("Location: ../login.php?error=Account not detected in system");
+            header("Location: login.php?error=Account not detected in system");
         } else {
             if (password_verify($password, $user['password_hash'])) {
                 $_SESSION['user_id'] = $user['_id'];
@@ -75,14 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Handle Logout via GET action
 if ($action === 'logout') {
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 
 // Fallback for old logout link
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 ?>
