@@ -5,8 +5,13 @@
  */
 
 class ConvexDB {
-    private $deploymentUrl = "https://amicable-pig-971.convex.cloud"; 
+    private $deploymentUrl; 
     private $apiKey = ""; // Optional, if using private deployment
+
+    public function __construct() {
+        // Use environment variable if set (for Vercel), fallback to local dev url
+        $this->deploymentUrl = getenv('CONVEX_URL') ?: "https://amicable-pig-971.convex.cloud";
+    }
 
     /**
      * Call a Convex query or mutation via HTTP API
